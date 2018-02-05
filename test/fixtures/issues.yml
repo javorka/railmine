@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  estimation: 1
+  type: 1
+  state: 1
+  sprint: one
+  project: one
+  user: one
+
+two:
+  name: MyString
+  description: MyString
+  estimation: 1
+  type: 1
+  state: 1
+  sprint: two
+  project: two
+  user: two

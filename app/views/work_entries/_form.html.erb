@@ -1,0 +1,32 @@
+<%= form_with(model: work_entry, local: true) do |form| %>
+  <% if work_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work_entry.errors.count, "error") %> prohibited this work_entry from being saved:</h2>
+
+      <ul>
+      <% work_entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hours %>
+    <%= form.number_field :hours, id: :work_entry_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :work_entry_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :issue_id %>
+    <%= form.text_field :issue_id, id: :work_entry_issue_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
