@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  belongs_to :team
+  belongs_to :team, optional: true
   has_many :sprints
   has_many :issues
 

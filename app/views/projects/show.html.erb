@@ -1,24 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <div>
+      <h3>Issues</h3>
+      <div class="list-group">
+        <% @project.issues.each do |issue| %>
+            <a href="#" class="list-group-item">
+              <h4 class="list-group-item-heading">
+                <% issue.name %></h4>
+              <p class="list-group-item-text">
+                <% issue.description %></p>
+            </a>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h3>Sprints</h3>
+      <div class="list-group">
+        <% @project.sprints.each do |sprint| %>
+            <a href="#" class="list-group-item">
+              <% sprint.name %>
+            </a>
+        <% end %>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @project.status %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @project.team %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <% if @issue == nil %>
+          <h2>Select an issue</h2>
+      <% else %>
+          <h2><% @issue.name %></h2>
+      <% end %>
+    </div>
+  </div>
+</div>
