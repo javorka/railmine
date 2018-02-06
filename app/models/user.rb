@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :password_digest
-  belongs_to :team, optional: true
+  has_and_belongs_to_many :teams
   has_many :issues
 
   enum role: [ :admin, :worker ]

@@ -1,37 +1,39 @@
 <%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+    <% if project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-      <% project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% project.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :project_name, class: 'form-control' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
-  </div>
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, id: :project_description, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :project_description %>
-  </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status, id: :project_status %>
-  </div>
+    <div class="form-group">
+      <%= form.label :status %>
+      <%= form.select(:status, options_for_select([['Active', 0], ['Inactive', 1], ['Postponed', 2]]), {}, class: 'form-control', id: :project_status) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :team_id %>
-    <%= form.text_field :team_id, id: :project_team_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions">
+      <%= form.submit class: 'btn btn-primary' %>
+      <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+    </div>
 <% end %>
+
+<script>
+    $(document).ready(function() { $("#project_status").select2({ theme: 'bootstrap' }); });
+</script>

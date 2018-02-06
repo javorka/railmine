@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -27,7 +28,6 @@ class UsersController < ApplicationController
     up = user_params
     up[:role] = up[:role].to_i
     @user = User.new(up)
-
     respond_to do |format|
       if @user.save
         format.html {redirect_to users_url, notice: 'User was successfully created.'}
@@ -73,11 +73,11 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :email, :role, :team_id)
+    params.require(:user).permit(:name, :password, :password_confirmation, :email, :role)
   end
 
   def user_params_update
-    params.require(:user).permit(:name, :email, :role, :team_id)
+    params.require(:user).permit(:name, :email, :role)
   end
 
 end

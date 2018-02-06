@@ -23,7 +23,7 @@
 
     <div class="form-group">
       <%= form.label :role %>
-      <%= form.select :role, options_for_select([['Admin', 0], ['Worker', 1]]), id: :user_role, class: 'form-control' %>
+      <%= form.select(:role, options_for_select([['Admin', 0], ['Worker', 1]]), {}, class: 'form-control', id: :user_role) %>
     </div>
 
     <div class="actions">
@@ -31,3 +31,7 @@
       <%= link_to 'Back', users_path, class: 'btn btn-default' %>
     </div>
 <% end %>
+
+<script>
+    $(document).ready(function() { $("#user_role").select2({ theme: 'bootstrap' }); });
+</script>

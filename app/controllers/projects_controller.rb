@@ -24,11 +24,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    pp = project_params
+    pp[:status] = pp[:status].to_i
+    @project = Project.new(pp)
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -41,8 +43,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+      pp = project_params
+      pp[:status] = pp[:status].to_i
+      if @project.update(pp)
+        format.html {redirect_to projects_url, notice: 'Project was successfully updated.'}
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
