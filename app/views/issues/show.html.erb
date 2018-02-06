@@ -1,44 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-12">
+  <%= link_to 'New issue', new_project_issue_path(@project), class: 'btn btn-success pull-right' %>
+  <h1 class="text-center"><%= @project.name %></h1>
+  <br>
+</div>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <div>
+      <h3>Issues</h3>
+      <div class="list-group">
+        <% @project.issues.each do |issue| %>
+            <%= link_to project_issue_path(@project, issue), class: 'list-group-item' do %>
+                <h4 class="list-group-item-heading">
+                  <%= issue.name %></h4>
+                <p class="list-group-item-text">
+                  <%= issue.description %></p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h3>Sprints</h3>
+      <div class="list-group">
+        <% @project.sprints.each do |sprint| %>
+            <%= link_to sprint.name, sprint, class: 'list-group-item' %>
+        <% end %>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @issue.name %>
-</p>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="well">
+      <h2><%= @issue.issue_type.to_s.upcase %>: <%= @issue.name %></h2>
+      <hr>
 
-<p>
-  <strong>Description:</strong>
-  <%= @issue.description %>
-</p>
+      <p class="lead">Description:</p>
+      <p><%= @issue.description %></p>
 
-<p>
-  <strong>Estimation:</strong>
-  <%= @issue.estimation %>
-</p>
+      <p class="h4 pull-right">Status: <%= @issue.state.to_s.upcase %></p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @issue.type %>
-</p>
+      <p class="h4">Estimation:</p>
+      <p><%= @issue.estimation %> hours</p>
 
-<p>
-  <strong>State:</strong>
-  <%= @issue.state %>
-</p>
-
-<p>
-  <strong>Sprint:</strong>
-  <%= @issue.sprint %>
-</p>
-
-<p>
-  <strong>Project:</strong>
-  <%= @issue.project %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @issue.user %>
-</p>
-
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %>
+    </div>
+  </div>
+</div>

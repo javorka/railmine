@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-12">
+  <%= link_to 'New issue', new_project_issue_path(@sprint.project), class: 'btn btn-success pull-right' %>
+  <h1 class="text-center"><%= @sprint.project.name + ' - ' + @sprint.name %></h1>
+  <br>
+</div>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <div>
+      <h3>Issues</h3>
+      <div class="list-group">
+        <% @sprint.issues.each do |issue| %>
+            <%= link_to project_issue_path(@project, issue), class: 'list-group-item' do %>
+                <h4 class="list-group-item-heading">
+                  <%= issue.name %></h4>
+                <p class="list-group-item-text">
+                  <%= issue.description %></p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="well">
+      <h2>Please select an issue</h2>
 
-<p>
-  <strong>From:</strong>
-  <%= @sprint.from %>
-</p>
-
-<p>
-  <strong>To:</strong>
-  <%= @sprint.to %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @sprint.name %>
-</p>
-
-<p>
-  <strong>Project:</strong>
-  <%= @sprint.project %>
-</p>
-
-<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
-<%= link_to 'Back', sprints_path %>
+    </div>
+  </div>
+</div>

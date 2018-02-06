@@ -4,7 +4,7 @@ class CreateIssues < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.integer :estimation
-      t.integer :type
+      t.integer :issue_type
       t.integer :state
       t.references :sprint, foreign_key: true
       t.references :project, foreign_key: true

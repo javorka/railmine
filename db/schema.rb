@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180206125340) do
     t.string "name"
     t.string "description"
     t.integer "estimation"
-    t.integer "type"
+    t.integer "issue_type"
     t.integer "state"
     t.integer "sprint_id"
     t.integer "project_id"

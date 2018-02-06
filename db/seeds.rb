@@ -37,3 +37,15 @@ sprints = Sprint.create [
   { name: 'Sprint 1', from: Date.parse('31.12.2017'), to: Date.parse('14.1.2018'), project: projects[1] },
   { name: 'Sprint 1', from: Date.parse('31.12.2017'), to: Date.parse('14.1.2018'), project: projects[2] }
 ]
+
+isseus = Issue.create [
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[0], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[0], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[0], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[1], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[1], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[1], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[2], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[2], user: admin },
+  { name: 'Missing button', description: 'Somewhere on the page is missing some button', estimation: 8, project: projects[2], user: admin },
+]

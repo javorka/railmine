@@ -1,15 +1,20 @@
 <div class="col-md-12">
+  <%= link_to 'New issue', new_project_issue_path(@project), class: 'btn btn-success pull-right' %>
+  <h1 class="text-center"><%= @project.name %></h1>
+  <br>
+</div>
+<div class="col-md-12">
   <div class="col-md-4">
     <div>
       <h3>Issues</h3>
       <div class="list-group">
         <% @project.issues.each do |issue| %>
-            <a href="#" class="list-group-item">
-              <h4 class="list-group-item-heading">
-                <% issue.name %></h4>
-              <p class="list-group-item-text">
-                <% issue.description %></p>
-            </a>
+            <%= link_to project_issue_path(@project, issue), class: 'list-group-item' do %>
+                <h4 class="list-group-item-heading">
+                  <%= issue.name %></h4>
+                <p class="list-group-item-text">
+                  <%= issue.description %></p>
+            <% end %>
         <% end %>
       </div>
     </div>
@@ -17,21 +22,16 @@
       <h3>Sprints</h3>
       <div class="list-group">
         <% @project.sprints.each do |sprint| %>
-            <a href="#" class="list-group-item">
-              <% sprint.name %>
-            </a>
+            <%= link_to sprint.name, sprint, class: 'list-group-item' %>
         <% end %>
       </div>
 
     </div>
   </div>
   <div class="col-md-8">
-    <div class="row">
-      <% if @issue == nil %>
-          <h2>Select an issue</h2>
-      <% else %>
-          <h2><% @issue.name %></h2>
-      <% end %>
+    <div class="well">
+      <h2>Please select an issue</h2>
+
     </div>
   </div>
 </div>

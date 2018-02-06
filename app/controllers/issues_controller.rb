@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update]
 
   # GET /issues
   # GET /issues.json
@@ -10,25 +10,31 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
+    @project = Project.find(params[:project_id])
   end
 
   # GET /issues/new
   def new
     @issue = Issue.new
+    @issue.project = Project.find(params[:project_id])
   end
 
   # GET /issues/1/edit
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(issue_params)
+    ip = issue_params
+    ip[:state] = ip[:state].to_i
+    ip[:issue_type] = ip[:issue_type].to_i
+    @issue = Issue.new(ip)
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
+        format.html { redirect_to project_issue_path(@issue.project, @issue), notice: 'Issue was successfully created.' }
         format.json { render :show, status: :created, location: @issue }
       else
         format.html { render :new }
@@ -41,8 +47,11 @@ class IssuesController < ApplicationController
   # PATCH/PUT /issues/1.json
   def update
     respond_to do |format|
-      if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+      ip = issue_params
+      ip[:state] = ip[:state].to_i
+      ip[:issue_type] = ip[:issue_type].to_i
+      if @issue.update(ip)
+        format.html { redirect_to project_issue_path(@issue.project, @issue), notice: 'Issue was successfully updated.' }
         format.json { render :show, status: :ok, location: @issue }
       else
         format.html { render :edit }
@@ -69,6 +78,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:name, :description, :estimation, :type, :state, :sprint_id, :project_id, :user_id)
+      params.require(:issue).permit(:name, :description, :estimation, :issue_type, :state, :sprint_id, :project_id, :user_id)
     end
 end
