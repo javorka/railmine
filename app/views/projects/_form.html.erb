@@ -25,7 +25,12 @@
 
     <div class="form-group">
       <%= form.label :status %>
-      <%= form.select(:status, options_for_select([['Active', 0], ['Inactive', 1], ['Postponed', 2]]), {}, class: 'form-control', id: :project_status) %>
+      <%= form.select(:status,
+                      project_status_options,
+                      { selected: resolve_project_status_id(project.status) },
+                      class: 'form-control',
+                      id: :project_status)
+      %>
     </div>
 
     <div class="actions">

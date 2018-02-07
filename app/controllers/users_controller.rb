@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    up = user_params_update
+    up = user_params
     up[:role] = up[:role].to_i
     if @user.update(up)
       redirect_to root_path, notice: 'User was successfully updated.'
@@ -66,11 +66,12 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :email)
-  end
+    user_params = params.require(:user).permit(:name, :email, :role, :password, :password_confirmation) # don't permit `password_digest` here, that database column should not be allowed to be set by the user!
 
-  def user_params_update
-    params.require(:user).permit(:name, :email, :role)
-  end
+    # Remove the password and password confirmation keys for empty values
+    user_params.delete(:password) unless user_params[:password].present?
+    user_params.delete(:password_confirmation) unless user_params[:password_confirmation].present?
 
+    user_params
+  end
 end
