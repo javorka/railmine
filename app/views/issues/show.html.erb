@@ -83,7 +83,7 @@
                   </div>
                 </div>
             <% end %>
-            <%= render 'issue_comments/form', issue_comment: IssueComment.new(issue: @issue, user_id: 1) %>
+            <%= render 'issue_comments/form', issue_comment: IssueComment.new(issue: @issue, user_id: current_user.id) %>
           </div>
           <div id="work_log" class="tab-pane fade">
             <br>
@@ -97,6 +97,7 @@
                   </div>
                 </div>
             <% end %>
+            <%= render 'work_entries/form', work_entry: WorkEntry.new(issue: @issue, user_id: current_user.id) %>
           </div>
           <div id="changes" class="tab-pane fade">
             <br>

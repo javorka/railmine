@@ -1,32 +1,29 @@
 <%= form_with(model: work_entry, local: true) do |form| %>
-  <% if work_entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(work_entry.errors.count, "error") %> prohibited this work_entry from being saved:</h2>
+    <% if work_entry.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(work_entry.errors.count, "error") %> prohibited this work_entry from being saved:</h2>
 
-      <ul>
-      <% work_entry.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% work_entry.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :hours %>
+      <div class="input-group">
+        <%= form.number_field :hours, id: :work_entry_hours, class: 'form-control', 'aria-describedby' => 'basic-addon2' %>
+        <span class="input-group-addon" id="basic-addon2">hours</span>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :hours %>
-    <%= form.number_field :hours, id: :work_entry_hours %>
-  </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :work_entry_user_id %>
-  </div>
+    <%= form.hidden_field :issue_id, id: :issue_comment_issue_id %>
+    <%= form.hidden_field :user_id, id: :issue_comment_user_id %>
 
-  <div class="field">
-    <%= form.label :issue_id %>
-    <%= form.text_field :issue_id, id: :work_entry_issue_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions">
+      <%= form.submit 'Comment', class: 'btn btn-primary' %>
+    </div>
 <% end %>

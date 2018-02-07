@@ -28,7 +28,7 @@ class WorkEntriesController < ApplicationController
 
     respond_to do |format|
       if @work_entry.save
-        format.html { redirect_to @work_entry, notice: 'Work entry was successfully created.' }
+        format.html { redirect_to project_issue_path(@work_entry.issue.project, @work_entry.issue), notice: 'Work entry was successfully created.' }
         format.json { render :show, status: :created, location: @work_entry }
       else
         format.html { render :new }
