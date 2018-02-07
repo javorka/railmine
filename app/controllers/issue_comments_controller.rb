@@ -28,7 +28,7 @@ class IssueCommentsController < ApplicationController
 
     respond_to do |format|
       if @issue_comment.save
-        format.html { redirect_to @issue_comment, notice: 'Issue comment was successfully created.' }
+        format.html { redirect_to project_issue_path(@issue_comment.issue.project, @issue_comment.issue), notice: 'Issue comment was successfully created.' }
         format.json { render :show, status: :created, location: @issue_comment }
       else
         format.html { render :new }

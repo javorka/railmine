@@ -42,5 +42,60 @@
       <p><%= @issue.estimation %> hours</p>
 
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#comments">Comments</a></li>
+          <li><a data-toggle="tab" href="#work_log">Work log</a></li>
+          <li><a data-toggle="tab" href="#changes">Changes</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="comments" class="tab-pane fade in active">
+            <br>
+            <% @issue.issue_comments.each do |c| %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= c.user.name %> (<%= c.created_at %>)</h3>
+                  </div>
+                  <div class="panel-body">
+                    <p><%= c.comment  %></p>
+                  </div>
+                </div>
+            <% end %>
+            <%= render 'issue_comments/form', issue_comment: IssueComment.new(issue: @issue, user_id: 1) %>
+          </div>
+          <div id="work_log" class="tab-pane fade">
+            <br>
+            <% @issue.work_entries.each do |we| %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= we.user.name %> (<%= we.created_at %>)</h3>
+                  </div>
+                  <div class="panel-body">
+                    <p>Spent <%= we.hours %> hours</p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+          <div id="changes" class="tab-pane fade">
+            <br>
+            <% @issue.audits.each do |audit| %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Action: <%= audit.action.capitalize %> (<%= audit.created_at %>)</h3>
+                  </div>
+                  <div class="panel-body">
+                    <p><strong>Changes:</strong></p>
+                    <% audit.audited_changes.each do |param, value| %>
+                        <p><%= param %> => <%= value || 'undefined' %></p>
+                    <% end %>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
