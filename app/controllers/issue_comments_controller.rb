@@ -1,5 +1,6 @@
 class IssueCommentsController < ApplicationController
   before_action :set_issue_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /issue_comments
   # GET /issue_comments.json
