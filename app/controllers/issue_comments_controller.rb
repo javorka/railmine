@@ -28,7 +28,7 @@ class IssueCommentsController < ApplicationController
 
     respond_to do |format|
       if @issue_comment.save
-        format.html { redirect_to project_issue_path(@issue_comment.issue.project, @issue_comment.issue), notice: 'Issue comment was successfully created.' }
+        format.html { redirect_to project_issue_path(@issue_comment.issue.project, @issue_comment.issue), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @issue_comment }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class IssueCommentsController < ApplicationController
   def update
     respond_to do |format|
       if @issue_comment.update(issue_comment_params)
-        format.html { redirect_to @issue_comment, notice: 'Issue comment was successfully updated.' }
+        format.html { redirect_to @issue_comment, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @issue_comment }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class IssueCommentsController < ApplicationController
   def destroy
     @issue_comment.destroy
     respond_to do |format|
-      format.html { redirect_to issue_comments_url, notice: 'Issue comment was successfully destroyed.' }
+      format.html { redirect_to issue_comments_url, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
