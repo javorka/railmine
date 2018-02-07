@@ -32,6 +32,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Status</th>
+        <th>Team</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -42,6 +43,7 @@
             <td><%= project.name %></td>
             <td><%= project.description %></td>
             <td><%= project.status %></td>
+            <td><%= project.team.nil? ? '' : project.team.name %></td>
             <td>
               <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-xs btn-default' %>
               <%= link_to 'Destroy', project, class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?' } %>

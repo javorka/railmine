@@ -26,9 +26,9 @@ teams = Team.create [
 ]
 
 projects = Project.create [
-  { name: 'Ruby project', description: 'Sample project in Ruby on Rails', team: teams[2] },
-  { name: 'Java project', description: 'Sample project in SpringBoot', team: teams[1] },
-  { name: 'JavaScript project', description: 'Sample project in Node JS', team: teams[3] }
+  { name: 'Ruby project', status: 0, description: 'Sample project in Ruby on Rails', team: teams[2] },
+  { name: 'Java project', status: 0, description: 'Sample project in SpringBoot', team: teams[1] },
+  { name: 'JavaScript project', status: 2, description: 'Sample project in Node JS', team: teams[3] }
 ]
 
 sprints = Sprint.create [
@@ -79,7 +79,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[0],
     user: workers[3],
-    sprint: sprints[0]
+    sprint: sprints[1]
   },
   {
     name: 'Issue 5',
@@ -89,7 +89,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[0],
     user: workers[1],
-    sprint: sprints[0]
+    sprint: sprints[1]
   },
   {
     name: 'Issue 6',
@@ -99,7 +99,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[0],
     user: workers[1],
-    sprint: sprints[0]
+    sprint: sprints[2]
   },
   {
     name: 'Issue 7',
@@ -109,7 +109,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[4],
-    sprint: sprints[0]
+    sprint: sprints[3]
   },
   {
     name: 'Issue 7',
@@ -119,7 +119,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[4],
-    sprint: sprints[0]
+    sprint: sprints[3]
   },
   {
     name: 'Issue 8',
@@ -129,7 +129,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[5],
-    sprint: sprints[0]
+    sprint: sprints[4]
   },
   {
     name: 'Issue 9',
@@ -139,7 +139,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[6],
-    sprint: sprints[0]
+    sprint: sprints[4]
   },
   {
     name: 'Issue 11',
@@ -149,7 +149,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[6],
-    sprint: sprints[0]
+    sprint: sprints[4]
   },
   {
     name: 'Issue 12',
@@ -159,7 +159,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[6],
-    sprint: sprints[0]
+    sprint: sprints[4]
   },
   {
     name: 'Issue 13',
@@ -169,7 +169,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[7],
-    sprint: sprints[0]
+    sprint: sprints[3]
   },
   {
     name: 'Issue 14',
@@ -179,7 +179,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[7],
-    sprint: sprints[0]
+    sprint: sprints[4]
   },
   {
     name: 'Issue 15',
@@ -189,7 +189,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[1],
     user: workers[7],
-    sprint: sprints[0]
+    sprint: sprints[3]
   },
   {
     name: 'Issue 16',
@@ -199,7 +199,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[2],
     user: workers[2],
-    sprint: sprints[0]
+    sprint: sprints[5]
   },
   {
     name: 'Issue 17',
@@ -209,7 +209,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[2],
     user: workers[2],
-    sprint: sprints[0]
+    sprint: sprints[5]
   },
   {
     name: 'Issue 17',
@@ -219,7 +219,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[2],
     user: workers[2],
-    sprint: sprints[0]
+    sprint: sprints[5]
   },
   {
     name: 'Issue 18',
@@ -229,7 +229,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[2],
     user: workers[3],
-    sprint: sprints[0]
+    sprint: sprints[5]
   },
   {
     name: 'Issue 19',
@@ -239,7 +239,7 @@ issues = Issue.create [
     estimation: 8,
     project: projects[2],
     user: workers[4],
-    sprint: sprints[0]
+    sprint: sprints[5]
   }
 ]
 

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin
-    redirect_to '/' unless current_user && current_user.role == :admin
+    redirect_to '/' unless current_user && current_user.role == :admin.to_s
   end
 
 end
