@@ -1,3 +1,22 @@
+<% content_for :navigation do %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user.role == :admin %>
+          <li><%= link_to 'Project management', projects_path %></li>
+          <li><%= link_to 'Team management', teams_path %></li>
+          <li><%= link_to 'User management', users_path %></li>
+      <% end  %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.name %>
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Update profile', edit_user_path(current_user) %></li>
+          <li><%= link_to 'Log out', '/logout' %></li>
+        </ul>
+      </li>
+    </ul>
+<% end %>
+
 <div class="col-md-12">
   <%= link_to 'New issue', new_project_issue_path(@project), class: 'btn btn-success pull-right' %>
   <h1 class="text-center"><%= @project.name %></h1>
@@ -8,8 +27,8 @@
     <div>
       <h3>Issues</h3>
       <div class="list-group">
-        <% @project.issues.each do |issue| %>
-            <%= link_to project_issue_path(@project, issue), class: 'list-group-item' do %>
+        <% get_issues(@project, @sprint).each do |issue| %>
+            <%= link_to project_issue_path(@project, issue, sprint: @sprint), class: 'list-group-item'.concat(@issue.id == issue.id ? ' active' : '') do %>
                 <h4 class="list-group-item-heading">
                   <%= issue.name %></h4>
                 <p class="list-group-item-text">
@@ -19,10 +38,10 @@
       </div>
     </div>
     <div>
-      <h3>Sprints</h3>
+      <h3>Sprints</h3><%= link_to 'clear', project_path(@project) %>
       <div class="list-group">
         <% @project.sprints.each do |sprint| %>
-            <%= link_to sprint.name, sprint, class: 'list-group-item' %>
+            <%= link_to sprint.name, project_path(@project, sprint: sprint), class: 'list-group-item'.concat(@sprint.to_i == sprint.id ? ' active' : '') %>
         <% end %>
       </div>
 
@@ -30,7 +49,8 @@
   </div>
   <div class="col-md-8">
     <div class="well">
-      <h2><%= @issue.issue_type.to_s.upcase %>: <%= @issue.name %></h2>
+      <%= link_to 'Edit', edit_project_issue_path(@project, @issue), class: 'btn btn-primary pull-right' %>
+      <h2><%= @issue.issue_type.to_s.upcase + ': ' + @issue.name %></h2>
       <hr>
 
       <p class="lead">Description:</p>

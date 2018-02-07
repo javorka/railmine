@@ -10,6 +10,7 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
+    @sprint = params[:sprint]
     @project = Project.find(params[:project_id])
   end
 

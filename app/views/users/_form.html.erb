@@ -17,31 +17,21 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :password %>
-      <%= form.text_field :password, id: :user_password, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :password_confirmation %>
-      <%= form.text_field :password_confirmation, id: :user_password_confirmation, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
       <%= form.label :email %>
       <%= form.text_field :email, id: :user_email, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= form.label :role %>
-      <%= form.select(:role, options_for_select([['Admin', 0], ['Worker', 1]]), {}, class: 'form-control', id: :user_role) %>
+      <%= form.label :password %>
+      <%= form.password_field :password, id: :user_password, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, id: :user_password_confirmation, class: 'form-control' %>
     </div>
 
     <div class="actions">
-      <%= form.submit class: 'btn btn-primary' %>
-      <%= link_to 'Back', users_path, class: 'btn btn-default' %>
+      <%= form.submit 'Sing up', class: 'btn btn-primary' %>
     </div>
 <% end %>
-
-<script>
-    $(document).ready(function() { $("#user_role").select2({ theme: 'bootstrap' }); });
-</script>

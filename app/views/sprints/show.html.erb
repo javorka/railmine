@@ -1,6 +1,26 @@
+<% content_for :navigation do %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user.role == :admin %>
+          <li><%= link_to 'Project management', projects_path %></li>
+          <li><%= link_to 'Team management', teams_path %></li>
+          <li><%= link_to 'User management', users_path %></li>
+      <% end  %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.name %>
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Update profile', edit_user_path(current_user) %></li>
+          <li><%= link_to 'Log out', '/logout' %></li>
+        </ul>
+      </li>
+    </ul>
+<% end %>
+
+
 <div class="col-md-12">
   <%= link_to 'New issue', new_project_issue_path(@sprint.project), class: 'btn btn-success pull-right' %>
-  <h1 class="text-center"><%= @sprint.project.name + ' - ' + @sprint.name %></h1>
+  <h1 class="text-center"><%= @sprint.project.name %></h1>
   <br>
 </div>
 <div class="col-md-12">
@@ -8,8 +28,8 @@
     <div>
       <h3>Issues</h3>
       <div class="list-group">
-        <% @sprint.issues.each do |issue| %>
-            <%= link_to project_issue_path(@project, issue), class: 'list-group-item' do %>
+        <% @sprint.project.issues.each do |issue| %>
+            <%= link_to project_issue_path(@sprint.project, issue), class: 'list-group-item' do %>
                 <h4 class="list-group-item-heading">
                   <%= issue.name %></h4>
                 <p class="list-group-item-text">

@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @sprint = params[:sprint]
   end
 
   # GET /projects/new
